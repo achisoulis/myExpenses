@@ -1,9 +1,29 @@
 package com.project.myExpenses.web.dto;
 
+import com.sun.istack.internal.NotNull;
+import org.springframework.security.core.parameters.P;
+
+import javax.validation.constraints.Pattern;
+
 public class UserRegistrationDto {
+	@NotNull
+	@Pattern(regexp = "^[a-zA-Z0-9]{6,12}$",
+			message = "username must be of 6 to 12 length with no special characters")
 	private String firstName;
+	@NotNull
+	@Pattern(regexp = "^[a-zA-Z0-9]{6,12}$",
+			message = "username must be of 6 to 12 length with no special characters")
 	private String lastName;
+
+
+	@NotNull
+	@Pattern(regexp = "^[_A-Za-z0-9-+]" +"(.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$",
+	message = "Email not valid")
 	private String email;
+
+	@NotNull
+	@Pattern(regexp = "^((?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])){4,12}$",
+			message = "password must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
 	private String password;
 	
 	public UserRegistrationDto(){
@@ -17,7 +37,7 @@ public class UserRegistrationDto {
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
