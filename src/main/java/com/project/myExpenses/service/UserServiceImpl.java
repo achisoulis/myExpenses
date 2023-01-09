@@ -16,8 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.myExpenses.repository.UserRepository;
+
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
 
@@ -27,6 +28,16 @@ public class UserServiceImpl implements UserService{
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public Iterable<User> findAllUsers() {
+		return userRepository.findAll();
 	}
 
 	@Override
