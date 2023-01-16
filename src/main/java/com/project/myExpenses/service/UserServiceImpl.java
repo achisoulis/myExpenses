@@ -36,6 +36,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public boolean emailExists(String email) {
+		if ( userRepository.findByEmail(email).equals(email ) )
+			return  true;
+		else
+			return  false;
+	 }
+
+	@Override
 	public Iterable<User> findAllUsers() {
 		return userRepository.findAll();
 	}
@@ -44,7 +52,8 @@ public class UserServiceImpl implements UserService {
 	public User save(UserRegistrationDto registrationDto) {
 		User user = new User(registrationDto.getFirstName(),
 				registrationDto.getLastName(), registrationDto.getEmail(),
-				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+				passwordEncoder.encode(registrationDto.getPassword()),
+				Arrays.asList(new Role("ROLE_USER")));
 
 		return userRepository.save(user);
 	}
@@ -53,6 +62,7 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		User user = userRepository.findByEmail(username);
+
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}

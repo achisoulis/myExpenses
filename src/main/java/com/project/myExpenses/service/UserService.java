@@ -8,6 +8,12 @@ public interface UserService extends UserDetailsService{
 
 
 	User findUserByEmail(String email);
+
+	boolean emailExists(String email);
+
 	Iterable<User> findAllUsers();
+
 	User save(UserRegistrationDto registrationDto);
+
+
 }

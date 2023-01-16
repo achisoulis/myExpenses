@@ -11,6 +11,7 @@
 	crossorigin="anonymous">
 
 </head>
+
 <body>
 	<!-- create navigation bar ( header) -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -23,24 +24,48 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-					Login Module</a>
+				<a class="navbar-brand" href="#" th:href="@{/login}">Login</a>
+
 			</div>
-			<div id="navbar" class="collapse navbar-collapse">
+
+			<div id="navbar"  class="topnav-right">
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
 			</div>
+
+
+			<div id="navbar" class="topnav-right">
+				<ul class="nav navbar-nav">
+
+					<li sec:authorize="isAuthenticated()"> <a  th:href="@{/about}">About Us</a>
+
+				</ul>
+
+		</div>
+
 		</div>
 	</nav>
+
 
 	<br>
 	<br>
 
 	<div class="container">
-		<h1>Registration and Login with Spring Boot, Spring Security,
-			Thymeleaf, Hibernate and MySQL</h1>
-		Welcome <span sec:authentication="principal.username"> User</span>
+		<h1>Time & Expenses</h1>
+
+		Welcome <span sec:authentication="principal.username"> User </span>
+
+
+
+	<div class="form-group">
+		<div class="row">
+<!--		<div class="col-sm-6 col-sm-offset-3">-->
+						<span>To manage your expenses: <a href="/" th:href="@{/expenses}">Click Here
+								</a></span>
 	</div>
+	</div>
+	</div>
+
 </body>
 </html>

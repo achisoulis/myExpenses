@@ -26,7 +26,7 @@ public class UserRegistrationDto {
 	@NotEmpty
 	private String lastName;
 
-	@NotNull
+	@NotNull()
 	@Pattern(regexp = "^[_A-Za-z0-9-+]" +"(.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$",
 	message = "Email not valid")
 	@NotEmpty
