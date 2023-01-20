@@ -5,9 +5,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Registration page</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous">
+
 </head>
 <body>
+
 <!-- create navigation bar ( header) -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -19,13 +25,28 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-				Login Module</a>
+			<a class="navbar-brand" href="#" th:href="@{/}">Home</a>
 		</div>
 	</div>
 </nav>
+<!--&lt;!&ndash; create navigation bar ( header) &ndash;&gt;-->
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+<!--	<div class="container">-->
+<!--		<div class="navbar-header">-->
+<!--			<button type="button" class="navbar-toggle collapsed"-->
+<!--					data-toggle="collapse" data-target="#navbar" aria-expanded="false"-->
+<!--					aria-controls="navbar">-->
+<!--				<span class="sr-only">Toggle navigation</span> <span-->
+<!--					class="icon-bar"></span> <span class="icon-bar"></span> <span-->
+<!--					class="icon-bar"></span>-->
+<!--			</button>-->
+<!--			<a class="navbar-brand" href="#" th:href="@{/}">Registration and-->
+<!--				Login Module</a>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</nav>-->
 
-<br>
+<!--<br>-->
 <br>
 <!-- Create HTML registration form -->
 <div class="container">
@@ -50,7 +71,7 @@
 				<div class="form-group">
 					<label for="firstName">First Name:</label>
 					<input type="text" class="form-control" id="firstName" th:field="*{firstName}">
-					<p class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+					<p class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"  th:errors="*{firstName}">
 				</div>
 
 				<!--					<div class="form-group">-->
@@ -61,11 +82,6 @@
 
 				<!--					</div>-->
 
-				<div class="form-group">
-					<label for="lastName">Last Name:</label>
-					<input type="text" class="form-control" id="lastName" th:field="*{lastName}">
-					<p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
-				</div>
 
 
 				<!--					<div class="form-group">-->

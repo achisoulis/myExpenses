@@ -1,10 +1,12 @@
 package com.project.myExpenses.web.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Data
@@ -12,18 +14,19 @@ public class ExpenseDto {
 
 
 //    @DateTimeFormat
+
     @NotNull
     @NotEmpty
     private String expensedate;
 
 
-    @NotEmpty
-    @NotNull
+    @NotEmpty(message = "Amount cannot be empty")
+    @NotNull(message =  "Amount cannot be null")
     private double amount;
 
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Category cannot be null")
+    @NotEmpty(message = "Category cannot be empty")
     private String category;
 
 //    @NotEmpty

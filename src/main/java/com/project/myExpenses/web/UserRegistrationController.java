@@ -88,7 +88,7 @@ public class UserRegistrationController {
 		} else
 		{
 			userService.save(registrationDto);
-//			model.addAttribute("successMsg", "Details saved successfully!!");
+			model.addAttribute("successMsg", "You have registered successfully!!");
 
 			return "success";
 		}

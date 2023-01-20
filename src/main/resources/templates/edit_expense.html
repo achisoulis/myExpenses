@@ -37,7 +37,7 @@
                 <form th:action="@{/expenses/{id} (id=${expense.id})}" th:object = "${expense}" method="POST">
 
                     <div class ="form-group">
-                        <label> Expense Description </label>
+                        <label> Date </label>
                         <input
                                 type = "text"
                                 name = "expensedate;"
@@ -45,6 +45,7 @@
                                 class = "form-control"
                                 placeholder="Enter Date of expense"
                         />
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expensedate')}" th:errorclass ="error" th:errors="*{expensedate}">
                     </div>
 
                     <div class ="form-group">
@@ -56,6 +57,7 @@
                                 class = "form-control"
                                 placeholder="Enter Amount"
                         />
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('amount')}" th:errorclass ="error" th:errors="*{amount}">
                     </div>
 
                     <div class ="form-group">
@@ -67,6 +69,7 @@
                                 class = "form-control"
                                 placeholder="Enter Category"
                         />
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('category')}" th:errorclass ="error" th:errors="*{category}">
                     </div>
 
 

@@ -2,6 +2,7 @@ package com.project.myExpenses.model;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -34,20 +35,12 @@ public class Expense {
     @Column(name= "total")
     private  Integer total;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(nullable = false)
-//    private Date expensedate;
-//
-//    @PrePersist
-//    private void onCreate() {
-//        expensedate = new Date();
-//    }
-
-
 
     @Column(name = "category")
     private String category;
 
+//    @Column(name = "user")
+//    private List<User> users;
 
     public Expense() {
     }

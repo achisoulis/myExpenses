@@ -34,20 +34,20 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Create New Expense </h1>
             <div class = "card-body">
-                <form th:action="@{/expenses}"  method="POST"  th:object= "${expense}">
+                <form th:action="@{/expenses/new}"  method="post"  th:object= "${expense}">
                     <div class ="form-group">
-
                         <label for="expensedate">Expense Date </label>
                         <input
                                 type = "text"
                                 th:field="*{expensedate}"
                                 id ="expensedate"
-
                                 class = "form-control"
-                                placeholder="yyyy-MM-dd"
-
-                        />
+                                placeholder="yyyy-mm-dd">
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expensedate')}" th:errorclass ="error" th:errors="*{expensedate}">
                     </div>
+
+
+
 
                     <!--                                th:field = "*{expensedate}"-->
                     <div class ="form-group">
@@ -59,6 +59,7 @@
                                 class = "form-control"
                                 placeholder="Enter Amount"
                         />
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('amount')}" th:errorclass ="error" th:errors="*{amount}">
                     </div>
                     <!--                                th:field = "*{amount}"-->
                     <div class ="form-group">
@@ -70,6 +71,7 @@
                                 class = "form-control"
                                 placeholder="Enter Category"
                         />
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('category')}" th:errorclass ="error" th:errors="*{category}">
                     </div>
                     <!--                                th:field = "*{category}"-->
 
@@ -85,17 +87,21 @@
                     <!--                                th:field = "*{user}"-->
 
 <!--                    <div class = "box-footer">-->
-                        <div class = "form-group">
-                           <button type="submit" class = "btn btn-primary">
-<!--                               <a href="/" th:href="@{/expenses}">-->
-                               Submit
+
+                    <div class = "form-group">
+<!--                        <a href="/" th:href="@{/expenses/}">-->
+
+
+                     <button type="submit" class = "btn btn-success"> Submit</button>
 
 <!--                        </a>-->
-                           </button>
+
+
                     </div>
+
                 </form>
 
-            </div>
+
         </div>
     </div>
 </div>
