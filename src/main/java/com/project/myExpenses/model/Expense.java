@@ -1,6 +1,13 @@
 package com.project.myExpenses.model;
 
+import com.project.myExpenses.web.dto.ExpenseDto;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.tomcat.jni.Local;
+import org.springframework.data.jpa.repository.Query;
+
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -9,100 +16,44 @@ import javax.persistence.*;
 @Entity
 @Table(name="expenses")
 public class Expense {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private String user;
+    @Column(name= "EXPENSE_DATE")    // expenseDate
+    private LocalDate expenseDate;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-
-//    @Column(name = "user")
-//    private String user(User user) {
-//        return this.user = user.getFirstName();
-//    }
-
-    @Column(name= "expensedate")
-    private String expensedate;
-
-    @Column(name = "amount")
+    @Column(name = "AMOUNT")
     private double amount;
 
-    @Column(name= "total")
-    private  Integer total;
-
-
-    @Column(name = "category")
+    @Column(name = "CATEGORY")
     private String category;
-
-//    @Column(name = "user")
-//    private List<User> users;
 
     public Expense() {
     }
 
-
-    public Expense(String expensedate, double amount, String category, int total) {
-    }
-
-
-
     public String getCategory() {
         return category;
     }
-//
-//    public String getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(String user) {
-//        this.user = user;
-//    }
 
-
-//    @JsonIgnore
-
-//    @ManyToOne
-//    private User user;
-
-    public String getExpensedate() {
-        return expensedate;
+    // LocalDate
+    public LocalDate getExpenseDate() {
+        return expenseDate;
     }
 
-    public void setExpensedate(String expensedate) {
-        this.expensedate = expensedate;
+    public void setExpenseDate(LocalDate expenseDate) {
+        this.expenseDate = expenseDate;
     }
 
     public double getAmount() {
         return amount;
     }
 
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public Integer getTotal() {
-        return total;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
-
-
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
 
     public Long getId() {
@@ -117,11 +68,20 @@ public class Expense {
         this.category = category;
     }
 
-    public Expense(String expensedate, double amount, String category) {
-    this.expensedate = expensedate;
+    public Expense(LocalDate expenseDate,
+                   double amount,
+                   String category
+                   )
+    {
+        this.expenseDate = expenseDate;
         this.amount = amount;
         this.category = category;
-//        this.user = user;
     }
+
+
+//    public int getTotal(ExpenseDto expenseDto) {
+//        ArrayList<>
+//    }
+
 }
 

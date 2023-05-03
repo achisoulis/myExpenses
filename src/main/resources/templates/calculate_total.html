@@ -1,0 +1,99 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Total amount of Expenses</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <div id="navbar"  class="topnav-right">-->
+<!--<label for="date-range">Select a date range from to calculate your total expenses</label>-->
+<!--<input type="date" id="start-date" name="start-date" min="1999-01-01" max="2050-12-31">-->
+<!--<input type="date" id="end-date" name="end-date" min="1999-01-01" max="2050-12-31">-->
+
+<!--    </div>-->
+
+<!--</div>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Total amount of Expenses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div id="navbar"  class="topnav-right">
+        <form th:action="@{/submitDateRange}" th:object="${dateRange}" method="post">
+            <label for="start-date">Select a starting date to calculate your expenses from </label>
+            <input type="date" id="start-date" name="startDate" min="1999-01-01" max="2050-12-31">
+<!--            <p class="error startDate-error"></p>-->
+            <label for="end-date">to :</label>
+            <input type="date" id="end-date" name="endDate" min="1999-01-01" max="2050-12-31">
+<!--            <p class="error endDate-error"></p>-->
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <form th:action="@{/submitDateRange}" th:object="${totalExpenses}" method="get">
+
+            <p> Your total expenses are : </p>  <td th:text = "${totalExpenses}"></td>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!--        <div class="dropdown">-->
+<!--            <label>Calendar: </label>-->
+<!--            <input type="date" id= "date-range">-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+
+<!--<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>-->
+<!--<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">-->
+<!--<dropdown>-->
+<!--    <input id="toggle1" type="checkbox" checked>-->
+<!--    <label for="toggle1" class="animate">Select Dates<i class="fa fa-bars float-right"></i></label>-->
+<!--    <ul class="animate">-->
+
+<!--        &lt;!&ndash; calendar  &ndash;&gt;-->
+<!--        <h1 class="center"></h1>-->
+<!--        <div class="calendar">-->
+<!--            <div class="group">-->
+<!--                <p class="left pointer minusmonth">&laquo;</p>-->
+<!--                <p class="left monthname center pointer"></p>-->
+<!--                <p class="right pointer addmonth">&raquo;</p>-->
+<!--            </div>-->
+<!--            <ul class="group">-->
+<!--                <li>Mo</li>-->
+<!--                <li>Tu</li>-->
+<!--                <li>We</li>-->
+<!--                <li>Th</li>-->
+<!--                <li>Fr</li>-->
+<!--                <li>Sa</li>-->
+<!--                <li>Su</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--    </ul>-->
+<!--</dropdown>-->
+
+

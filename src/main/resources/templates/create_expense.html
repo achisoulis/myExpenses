@@ -36,14 +36,14 @@
             <div class = "card-body">
                 <form th:action="@{/expenses/new}"  method="post"  th:object= "${expense}">
                     <div class ="form-group">
-                        <label for="expensedate">Expense Date </label>
+                        <label for="expenseDate">Expense Date </label>
                         <input
                                 type = "text"
-                                th:field="*{expensedate}"
-                                id ="expensedate"
+                                th:field="*{expenseDate}"
+                                id ="expenseDate"
                                 class = "form-control"
-                                placeholder="yyyy-mm-dd">
-                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expensedate')}" th:errorclass ="error" th:errors="*{expensedate}">
+                                placeholder="DD/MM/YYYY">
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expenseDate')}" th:errorclass ="error" th:errors="*{expenseDate}">
                     </div>
 
 
@@ -95,7 +95,6 @@
                      <button type="submit" class = "btn btn-success"> Submit</button>
 
 <!--                        </a>-->
-
 
                     </div>
 

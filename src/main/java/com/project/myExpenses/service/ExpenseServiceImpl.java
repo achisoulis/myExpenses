@@ -26,13 +26,17 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     public Expense saveExpense(ExpenseDto expenseDto) {
 
-        Expense expense = new Expense(expenseDto.getExpensedate(),
+//        List<Expense> expenses = expenseRepository.findByDate(expenseDto.getExpenseDate());
+
+
+        Expense expense = new Expense(expenseDto.getExpenseDate(),
                 expenseDto.getAmount(),
                 expenseDto.getCategory());
-//        expenseDto.getTotal());
+
 
         return expenseRepository.save(expense);
-    }
+
+}
 
     @Override
     public Expense getExpenseById(Long id) {
@@ -49,4 +53,9 @@ public class ExpenseServiceImpl implements ExpenseService {
     public void deleteExpenseById(Long id) {
         expenseRepository.deleteById(id);
     }
-}
+
+    @Override
+    public Expense countTotalExpenses(Expense expense) {
+        return (Expense) expenseRepository.countTotal(expense.getAmount());
+    }
+    }

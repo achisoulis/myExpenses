@@ -58,14 +58,21 @@
 
 
 
-	<div class="form-group">
-		<div class="row">
-<!--		<div class="col-sm-6 col-sm-offset-3">-->
-						<span>To manage your expenses: <a href="/" th:href="@{/expenses}">Click Here
+		<span>To manage your expenses: <a  th:href= "@{/expenses}"> "Click Here
 								</a></span>
 	</div>
+
+
+	<div class="container">
+		<h1>Calculate Total Expenses</h1>
+
+		Welcome <span sec:authentication="principal.username"> User </span>
+
+
+		<span>To calculate your whole expenses: <a  th:href= "@{/calculate_total}"> "Click Here
+								</a></span>
 	</div>
-	</div>
+
 
 </body>
 </html>

@@ -13,9 +13,15 @@ public interface ExpenseService  {
 
     Expense getExpenseById(Long id);
 
+//    Expense getTotalAmount(ExpenseDto expenseDto);
+
     Expense updateExpense(Expense expense);
 
-
+//    Expense findByDate(String date);
 
     void deleteExpenseById(Long id);
+
+
+    Expense countTotalExpenses(Expense expense);
+
 }

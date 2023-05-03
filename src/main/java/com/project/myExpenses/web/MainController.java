@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -20,9 +21,10 @@ public class MainController {
 		return "login";
 	}
 
-	@PostMapping("/login")
-	public String login_post() {
-		return "login";
+	@PostMapping("/login/{id}")
+	public String login_post(@PathVariable( value = "id") long id
+							 ) {
+		return "login/{id}";
 	}
 	
 	@GetMapping("/index")
@@ -35,39 +37,18 @@ public class MainController {
 		return "about";
 	}
 
-//	@GetMapping("/expenses")
-//	public  String listStudent() { return  "expenses";}
-//
-//	@PostMapping("/expenses")
-//	public  String saveExpense() { return  "expenses";}
 
+	@GetMapping("calculate_total")
+	public  String calculate_total() { return "calculate_total";
+	}
 
-//	@GetMapping("/expenses/new")
-//	public  String createExpenseForm() { return  "create_expense";}
-//
-//
-//	@PostMapping("/expenses/new")
-//	public  String expensesNew_post() { return  "create_expense";}
-//
-//	@GetMapping("/calendar")
-//	public  String get_calendar() { return "calendar";}
-//
-//	@PostMapping("/calendar")
-//	public  String post_calendar() { return "calendar";}
 
 	@ModelAttribute("user")
 	public UserRegistrationDto userRegistrationDto() {
 		return new UserRegistrationDto();
 	}
 
-//	@ModelAttribute("expense")
-//	public ExpenseDto saveExpense_post() {
-//		return new ExpenseDto();
 
-//	@ModelAttribute("expense")
-//	public ExpenseDto saveExpense() {
-//		return new ExpenseDto();
-//	}
 
 	@ModelAttribute("expense")
 	public ExpenseDto saveExpense_post() {
@@ -75,15 +56,5 @@ public class MainController {
 	}
 
 
-/*
-//	@PostMapping("/")
-	public String login(@Valid User user, Errors errors, Model model) {
-		if (errors.hasErrors()) {
-			return "login";
-		} else {
-			model.addAttribute("message", "Guest login successful ...");
-			return "login";
-		}
-	}
-*/
+
 }

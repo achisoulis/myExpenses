@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">Student Management System</a>
+  <a class="navbar-brand" href="#">Financial Management System</a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -49,19 +49,18 @@
       <th> Amount</th>
       <th> Category </th>
       <th> Actions </th>
-      <th> Total expenses</th>
     </tr>
     </thead>
 
 
     <tbody>
     <tr th:each = "expense: ${expenses}">
-      <td th:text = "${expense.expensedate}"></td>
+      <td th:text = "${expense.expenseDate}"></td>
 <!--      <input type="date" name="party" min="2000-01-01" >-->
 
       <td th:text = "${expense.amount}"></td>
       <td th:text = "${expense.category}"></td>
-<!--      <td th:text =  "${expense.total}"></td>-->
+
 
 <!--      <td th:text = "${expense.user}"></td>-->
       <td>
@@ -72,6 +71,9 @@
            class = "btn btn-danger">Delete</a>
 
       </td>
+
+
+
     </tr>
     </tbody>
 

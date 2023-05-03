@@ -9,9 +9,10 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+
 @NoArgsConstructor
 @Data
+@Entity
 @Table(name="category")
 public class Category {
 

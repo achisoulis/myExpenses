@@ -43,6 +43,8 @@ public class UserServiceImpl implements UserService {
 			return  false;
 	 }
 
+
+
 	@Override
 	public Iterable<User> findAllUsers() {
 		return userRepository.findAll();
@@ -67,6 +69,7 @@ public class UserServiceImpl implements UserService {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+
 	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

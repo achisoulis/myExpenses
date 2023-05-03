@@ -1,13 +1,12 @@
 package com.project.myExpenses.web.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.apache.tomcat.jni.Local;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class ExpenseDto {
@@ -15,9 +14,9 @@ public class ExpenseDto {
 
 //    @DateTimeFormat
 
-    @NotNull
-    @NotEmpty
-    private String expensedate;
+    @NotNull(message = "Date cannot be null")
+    @NotEmpty(message = "Date cannot be empty")
+    private LocalDate expenseDate;
 
 
     @NotEmpty(message = "Amount cannot be empty")
@@ -29,35 +28,27 @@ public class ExpenseDto {
     @NotEmpty(message = "Category cannot be empty")
     private String category;
 
-//    @NotEmpty
-//    @NotNull
-    private Integer total;
+    @NotEmpty
+    @NotNull
+    private double total;
 
-    public ExpenseDto(String expensedate, int amount, String category, int total) {
-        this.expensedate = expensedate;
+    public ExpenseDto(LocalDate expenseDate, int amount, String category) {
+        this.expenseDate = expenseDate;
         this.amount = amount;
         this.category = category;
-        this.total = total;
+
     }
 
     public ExpenseDto() {
 
     }
 
-    public Integer getTotal() {
-        return total;
+    public LocalDate getExpenseDate() {
+        return expenseDate;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
-
-    public String getExpensedate() {
-        return expensedate;
-    }
-
-    public void setExpensedate(String expensedate) {
-        this.expensedate = expensedate;
+    public void setExpenseDate(LocalDate expenseDate) {
+        this.expenseDate = expenseDate;
     }
 
     public double getAmount() {
@@ -74,5 +65,13 @@ public class ExpenseDto {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

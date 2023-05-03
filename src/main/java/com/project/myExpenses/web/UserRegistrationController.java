@@ -9,18 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import com.project.myExpenses.service.UserService;
 import com.project.myExpenses.web.dto.UserRegistrationDto;
-
-import javax.naming.Binding;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 @Controller
 @RequestMapping("/registration")
@@ -54,24 +47,6 @@ public class UserRegistrationController {
 									  Model model,
 									  BindingResult result)
 	{
-//		if (registrationDto.getEmail().isEmpty())
-//		{	result.rejectValue("email" , null,"Email Cannot be Empty");
-//		return  "registration"; }
-//
-//
-//		if (registrationDto.getEmail().isEmpty())
-//		{	result.rejectValue("firstName" , null,"First Name Cannot be Empty");
-//		return  "registration"; }
-//
-//		if (registrationDto.getEmail().isEmpty())
-//		{	result.rejectValue("lastName" , null,"Last Name Cannot be Empty");
-//		return  "registration"; }
-//
-//
-//		if (registrationDto.getEmail().isEmpty())
-//		{	result.rejectValue("password" , null,"Password Cannot be Empty");
-//		return  "registration"; }
-
 
 		 User existingUser = userService.findUserByEmail(registrationDto.getEmail());
 

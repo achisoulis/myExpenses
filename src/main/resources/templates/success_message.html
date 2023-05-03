@@ -4,15 +4,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Registration page</title>
+    <title>Form submitted successfully</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+
+
 <div class="col-md-12" align="center">
-    <br />
+
     <div class="alert alert-success col-md-8" role="alert">
-        <p th:text="${successMsg}"> You have successfully registerd</p>
+        <p th:text="${sucessfullMsg}">
+
+        </p>
+
     </div>
+
+    <a href="/" th:href="@{/index}">Home
+    </a></span>
+
+
 </div>
 </body>
 </html>
+
