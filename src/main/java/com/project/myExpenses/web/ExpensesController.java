@@ -129,7 +129,7 @@ public class ExpensesController {
 //        }
 
         if (expenseDto.getAmount() == 0) {
-            result.rejectValue("amount", null, "Please place your amount purchased at Euro(E)");
+            result.rejectValue("amount",  null, "Please place your amount purchased at Euro(E)");
             return "create_expense";
 
         }
