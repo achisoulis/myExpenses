@@ -7,9 +7,12 @@ import com.project.myExpenses.service.ExpenseService;
 import com.project.myExpenses.utils.DateRange;
 import com.project.myExpenses.web.dto.ExpenseDto;
 import org.apache.tomcat.jni.Local;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +23,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -68,37 +73,61 @@ public class ExpensesController {
 
     @PostMapping("/expenses/new")
     public String saveExpense_post(Model model,
-                                   @ModelAttribute("expense") @Valid ExpenseDto expenseDto,
-                                   BindingResult result,
-                                   RedirectAttributes attr
+                                   @ModelAttribute("expense") @Valid @NotNull ExpenseDto expenseDto,
+                                   BindingResult result
+
     ) {
 
         String pattern = "YYYY/MM/DD";
-        Pattern pattern_numeric = Pattern.compile("-?\\d+(\\.\\d+)?");
+//        Pattern pattern_numeric = Pattern.compile("-?\\d+(\\.\\d+)?");
 
 //        // Function call
+//
+////        if (expenseDto.getExpenseDate() == null) {
+////            model.addAttribute("fail", " Date cannot be null");
+////            return "create_expense";
+////        }
+//
+
+//        if (expenseDto.getExpenseDate() == null) {
+//            result.rejectValue("expenseDate", null, "Date cannot be null");
+//            return "create_expense";
+//
+//        }
+
+//        if (expenseDto.getExpenseDate().toString() != null) {
+//
 
 
-        if (expenseDto.getExpenseDate()
-                .toString() != null) {
-            boolean isValidFormat = expenseDto.getExpenseDate()
-                    .toString()
-                    .matches("\\d{4}-\\d{2}-\\d{2}");
-
-            if (expenseDto.getExpenseDate().toString() == null) {
-                result.rejectValue("expenseDate", null, "Date cannot be null");
-                return "create_expense";
-
-            }
+//String date = expenseDto.getExpenseDate().format((DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))); // 18/04/2023
+//String date = expenseDto.getExpenseDate().format((DateTimeFormatter.ISO_LOCAL_DATE));
+//String date = expenseDto.getExpenseDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));  // dd//MM//yyyy
 
 
-            if (!isValidFormat) {
-                result.rejectValue("expenseDate", null, "Place date on specific format :YYYY/MM/DD");
-                return "create_expense";
+//            boolean isValidFormat = expenseDto.getExpenseDate().toString()
+//                    .matches("\\d{4}-\\d{2}-\\d{2}");
+//
 
-            } else
-                model.addAttribute("fail", " Date cannot be null");
+//        boolean isValidFormat = expenseDto.getExpenseDate().toString().matches("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+//
+
+        if (expenseDto.getExpenseDate() == null) {
+            result.rejectValue("expenseDate", null, "Place date on specific format:dd//MM//yyyy");
+
+            return "create_expense";
         }
+
+//
+//            if (!isValidFormat) {
+//                result.rejectValue("expenseDate", null, "Place date on specific format :yyyy-MM-dd");
+//                return "create_expense";
+//
+//            }
+//            else {
+//                model.addAttribute("fail", " Date cannot be null");
+//                return "create_expense";
+//            }
+//        }
 
         if (expenseDto.getAmount() == 0) {
             result.rejectValue("amount", null, "Please place your amount purchased at Euro(E)");
@@ -114,7 +143,7 @@ public class ExpensesController {
         }
 
         expenseService.saveExpense(expenseDto);
-//        model.addAttribute("expense", expenseDto);
+
         model.addAttribute("sucessfullMsg", " Expense have been successfully submitted");
         return "success_message";
     }
@@ -122,13 +151,10 @@ public class ExpensesController {
 
     @PostMapping("/expenses")
     public String saveExpense(@ModelAttribute("expense") @Valid ExpenseDto expenseDto, BindingResult result, RedirectAttributes attr, Model model) {
-
         LocalDate expenseDtoDate = expenseDto.getExpenseDate();
 
-//        }
         expenseService.saveExpense(expenseDto);
 
-//        model.addAttribute("expense", expenseRepository.countTotalAmountByDate());
 
         return "redirect:/expenses";
     }
@@ -142,13 +168,7 @@ public class ExpensesController {
 
 
 
-/*
-    @GetMapping("/submitDateRange")
-    public String showForm(Model model) {
-        model.addAttribute("dateRange", new DateRange());
-        return "calculateTotal";
-    }
-    */
+
 
 
     @PostMapping("/submitDateRange")
@@ -160,13 +180,11 @@ public class ExpensesController {
         LocalDate startDate = LocalDate.parse(startDateStr);
         LocalDate endDate = LocalDate.parse(endDateStr);
 
-        if ( startDate.toString().isEmpty() )
-                result.rejectValue("startDate" , null, "Please choose startdate");
+        if (startDate.toString().isEmpty())
+            result.rejectValue("startDate", null, "Please choose startdate");
 
-        if ( endDate.toString().isEmpty())
+        if (endDate.toString().isEmpty())
             result.rejectValue("endDate", null, "Please choose enddate");
-
-
 
 
         List<Expense> totalExpense = expenseRepository.findExpensesBetweenDates(startDate, endDate);
@@ -177,21 +195,17 @@ public class ExpensesController {
             sum += totalExpense.get(i).getAmount();
         }
 
-//        totalExpenses = sum;
-//
-        model.addAttribute("totalExpenses", sum);
 
+        model.addAttribute("totalExpenses", sum);
 
 
         return "calculate_total";
 
     }
-//
-//    @PostMapping("/submit")
-//    public String totalExpenses(@ModelAttribute
 
 
     @PostMapping("/expenses/{id}")
+    @Transactional
     public String updateExpense(@PathVariable Long id,
                                 @ModelAttribute("expense") ExpenseDto expenseDto,
                                 Model model, BindingResult result) {
@@ -207,15 +221,18 @@ public class ExpensesController {
         String pattern = "YYYY/MM/DD";
         Pattern pattern_numeric = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-        boolean isValidFormat = expenseDto.getExpenseDate().toString().matches("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+//        boolean isValidFormat = expenseDto.getExpenseDate().toString().matches("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+
         if (expenseDto.getExpenseDate() == null) {
-            result.rejectValue("expensedate", null, "Date cannot be null");
+            result.rejectValue("expenseDate", null, "Place date on specific format:dd//MM//yyyy");
             return "create_expense";
         }
-        if (!isValidFormat) {
-            result.rejectValue("expensedate", null, "Please place date on specific format :DD/MM/YYYY");
-            return "create_expense";
-        }
+
+
+//        if (!isValidFormat) {
+//            result.rejectValue("expenseDate", null, "Please place date on specific format :DD/MM/YYYY");
+//            return "create_expense";
+//        }
         if (expenseDto.getAmount() == 0) {
             result.rejectValue("amount", null, "Please place your amount purchased at Euro(E)");
             return "create_expense";
@@ -226,7 +243,8 @@ public class ExpensesController {
             return "create_expense";
         }
 //        expenseService.saveExpense(expenseDto);
-//        model.addAttribute("expense", expenseDto );
+//        model.addAttribute("expense", expenseDto
+
         expenseService.updateExpense(existingExpense);
         return "redirect:/expenses";
     }

@@ -1,11 +1,7 @@
 package com.project.myExpenses.web.dto;
 
-import com.project.myExpenses.validator.ValidEmail;
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.security.core.parameters.P;
-
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 

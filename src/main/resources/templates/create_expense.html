@@ -42,11 +42,9 @@
                                 th:field="*{expenseDate}"
                                 id ="expenseDate"
                                 class = "form-control"
-                                placeholder="DD/MM/YYYY">
+                                placeholder="dd/MM/yyyy">
                         <p class="alert alert-danger" th:if="${#fields.hasErrors('expenseDate')}" th:errorclass ="error" th:errors="*{expenseDate}">
                     </div>
-
-
 
 
                     <!--                                th:field = "*{expensedate}"-->

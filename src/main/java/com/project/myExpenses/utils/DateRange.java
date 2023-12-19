@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DateRange {
+public class
+
+ DateRange {
 
     private String startDate;
     private String endDate;

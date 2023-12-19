@@ -4,6 +4,7 @@ package com.project.myExpenses.web;
 import com.project.myExpenses.model.User;
 import com.project.myExpenses.web.dto.ExpenseDto;
 import com.project.myExpenses.web.dto.UserRegistrationDto;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +52,7 @@ public class MainController {
 
 
 	@ModelAttribute("expense")
+	@DateTimeFormat
 	public ExpenseDto saveExpense_post() {
 		return new ExpenseDto();
 	}

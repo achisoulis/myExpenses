@@ -40,12 +40,12 @@
                         <label> Date </label>
                         <input
                                 type = "text"
-                                name = "expensedate;"
-                                th:field = "*{expensedate}"
+                                name = "expenseDate"
+                                th:field = "*{expenseDate}"
                                 class = "form-control"
                                 placeholder="Enter Date of expense"
                         />
-                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expensedate')}" th:errorclass ="error" th:errors="*{expensedate}">
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('expenseDate')}" th:errorclass ="error" th:errors="*{expenseDate}">
                     </div>
 
                     <div class ="form-group">

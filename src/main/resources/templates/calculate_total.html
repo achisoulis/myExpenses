@@ -32,12 +32,16 @@
 <div class="container">
     <div id="navbar"  class="topnav-right">
         <form th:action="@{/submitDateRange}" th:object="${dateRange}" method="post">
-            <label for="start-date">Select a starting date to calculate your expenses from </label>
-            <input type="date" id="start-date" name="startDate" min="1999-01-01" max="2050-12-31">
-<!--            <p class="error startDate-error"></p>-->
-            <label for="end-date">to :</label>
-            <input type="date" id="end-date" name="endDate" min="1999-01-01" max="2050-12-31">
-<!--            <p class="error endDate-error"></p>-->
+            <label for="start-date">Select a starting date to calculate your expenses from
+            <input type="date" id="start-date" name="startDate" min="1999-01-01" max="2050-12-31"
+                required />
+                <span class="validity"></span>
+            </label>
+            <label for="end-date">to :
+            <input type="date" id="end-date" name="endDate" min="1999-01-01" max="2050-12-31"
+                required />
+                <span class="validity"></span>
+            </label>
             <button type="submit">Submit</button>
 
         </form>
