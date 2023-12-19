@@ -81,7 +81,6 @@ public class ExpensesController {
         String pattern = "YYYY/MM/DD";
 //        Pattern pattern_numeric = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-//        // Function call
 //
 ////        if (expenseDto.getExpenseDate() == null) {
 ////            model.addAttribute("fail", " Date cannot be null");
